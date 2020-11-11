@@ -1,0 +1,14 @@
+<template>
+	<div>
+		{{$store.state.counter}}
+	</div>
+</template>
+
+<script>
+	export default {
+		name:"view1"
+	}
+</script>
+
+<style scoped>
+</style>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<!-- key来给每个节点做一个唯一标识，diff算法就可以正确认识此节点（key为下标时不起作用）
+				找到正确位置插入新节点，作用是为了高效地更新虚拟dom，在数组中间插值时有效-->
+				<li v-for='item in sz' :key="item">{{item}}</li>
+			</ul>
+		</div>
+		<script>
+			const app = new Vue({
+				el: '#app',
+				data: {
+					sz:['A','B','C','D','E']
+				},
+				methods:{
+				}
+			})
+		</script>
+	</body>
+</html>

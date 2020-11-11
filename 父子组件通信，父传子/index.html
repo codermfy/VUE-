@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<cpn :cmovies="movies"  :cmessage="message"></cpn>
+			<cpn   :cmessage="message"></cpn>
+			<hr><hr>
+			<cpn2 :c-info="info" :child-my-message="message"></cpn2>
+		</div>
+		<!-- 定义组件必须要有一个根元素如div -->
+		<template id="cpn">
+			<div>
+				<ul>
+					<li v-for="item in cmovies">{{item}}</li>
+				</ul>
+			<h2>{{cmessage}}</h2>
+			</div>
+		</template>
+		<template id="cpn2">
+			<div>
+				<h1>sssssssssssssssss</h1>
+				{{cInfo}}
+				{{childMyMessage}}
+				<h2>v-bind不识别驼峰，cInfo用c-info代替</h2>
+			</div>
+		</template>
+		<script>
+			//父传子：props
+			const cpn={
+				template:'#cpn',
+				// props:['cmovies','cmessage'],
+				props:{
+					//1.类型限制
+					// cmovies:Array,
+					// cmessage:String,
+					//2.提供一些默认值
+					cmessage:{
+						type:String,
+						default:'aaaaaa',
+						required:true,//必须传值，否则报错
+					},
+					//类型是对象或者数组时，默认值必须是一个函数
+					cmovies:{
+						type:Array,
+						default(){
+							return ['123','223','sss']
+						}
+					}
+				}
+				
+			};
+			const cpn2={
+				template:'#cpn2',
+				props:{
+					cInfo:{
+						type:Object,
+						default(){
+							return []
+						}
+					},
+					childMyMessage:{
+						type:String,
+						default:'nothing'
+					}
+				}
+			};
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message:'hello',
+					movies:['haiwang','haizeiwang','haierxiongdi'],
+					info:{
+						name:"why",
+						age:18,
+						height:1.88
+					}
+				},
+				methods:{
+				},
+				components:{
+					cpn,
+					cpn2
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h2 v-if=isShow>{{message}}</h2>
+			<h1 v-else>isShow为false时，显示我</h1>
+			<hr><hr>
+<!-- 			<h2 v-if="score>=90">yx</h2>
+			<h2 v-else-if="score>=80">lh</h2>
+			<h2 v-else-if="score>=60">jg</h2>
+			<h2 v-else>bjg</h2> -->
+			<h2>{{result}}</h2>
+		</div>
+		<script>
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message:'hi',
+					isShow:true,
+					score:99
+				},
+				methods:{
+					
+				},
+				computed:{
+					result(){
+						let showmessage='';
+						if(this.score>=90){
+							showmessage='yx';
+						}
+						else if(this.score>=80){
+							showmessage='lh';
+						}
+						else if(this.score>=60){
+							showmessage='jg';
+						}
+						else{
+							showmessage='bjg';
+						}
+						return showmessage;
+					}
+				}
+			})
+		</script>
+	</body>		
+</html>

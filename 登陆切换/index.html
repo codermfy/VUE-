@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<span v-if="isUser">
+				<label for='username'>用户账户</label>
+				<input type="text" id="username" placeholder="用户账户" key='1'>
+				</span>
+				<!-- 存在input复用的问题，即输入的内容在切换后还会显示在input上
+				 Dom渲染时出于性能考虑，会尽可能的复用已经存在的元素：用key作为区分-->
+			<span v-else>
+				<label for='email'>用户邮箱</label>
+				<input type="text" id="email" placeholder="用户邮箱" key='2'>
+			</span>
+			<button type="button" @click="change">切换类型</button>
+		</div>
+		<script>
+			const app = new Vue({
+				el: '#app',
+				data: {
+					isUser:true
+				},
+				methods:{
+					change(){
+						this.isUser=!this.isUser;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

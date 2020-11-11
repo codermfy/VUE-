@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.active{
+				color:red;
+			}
+			li{
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<!-- 在遍历的过程中，可以使用索引值（下标） -->
+				<li v-for="(m,index) in movies" :class="{active:currentindex===index}" @click="btn(index)">{{m}}</li>
+			</ul>
+			<!-- 遍历对象的过程中如果只是获取一个值，那么获取到的是value -->
+			<!-- 获取key，value,index 顺序（value,key,index) in xxxx -->
+			<ul>
+				<li v-for="(value,key,index) in info">{{index}}--{{key}}:{{value}}</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			const app=new Vue({
+				el:'#app',
+				data:{
+					movies:["超人","复仇者","tnent","ghot"],
+					currentindex:0,
+					info:{
+						name:"why",
+						age:18,
+						height:1.88
+					}
+				},
+				methods:{
+					btn:function(index){
+						this.currentindex=index;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

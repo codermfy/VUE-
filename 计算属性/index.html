@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h2>{{Fullname}}</h2>
+			
+			<h2>总价格:{{totalprice}}</h2>
+			<hr>
+			<h1>计算属性和methods的对比</h1>
+			<!-- 直接拼接：语法过于繁琐 -->
+			<h2>{{firstname}} {{lastname}}</h2>
+			<!-- 定义methods:多次使用多次调用 -->
+			<h2>{{getFullName()}}</h2>
+			<!-- 通过computed:多次使用一次调用-->
+			<h2>{{Fullname}}</h2>
+		</div>
+		
+		<script type="text/javascript">
+			const app=new Vue({
+				el:'#app',
+				data:{
+					firstname:'lebron',
+					lastname:'James',
+					books:[
+						{id:110,name:'unix',price:119},
+						{id:110,name:'unix',price:129},
+						{id:110,name:'unix',price:139},
+						{id:110,name:'unix',price:149}
+					]
+				},
+				methods:{
+					getFullName:function(){
+						return this.firstname+' '+this.lastname;
+					}
+				},
+				//计算属性 一般没有set方法,只读属性
+				computed:{
+					// Fullname:function(){
+					// 	return this.firstname+' '+this.lastname;
+					// },
+					Fullname:{
+						set:function(arg){
+							const names=arg.split(' ');
+							this.firstname=names[0];
+							this.lastname=names[1];
+						},
+						get:function(){
+							return this.firstname+' '+this.lastname;
+						}
+					},
+					totalprice:function(){
+						return this.books.reduce((preValue,curValue)=>{
+							return preValue+curValue.price;
+						},0);
+					},
+					
+				}
+			})
+		</script>
+	</body>
+</html>

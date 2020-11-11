@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.active{
+				color:red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			动态绑定a元素的href
+			动态绑定img的src
+			<img v-bind:src="imgurl" alt="">
+			<a v-bind:href="ahref">百度一下</a>
+			
+			<h1>语法糖的写法</h1>
+			<a :href="ahref">百度一下</a>
+			<hr><hr>
+			<h1>v-bind动态绑定class(对象语法)</h1>
+			<h2 class="title" :class='{active:isActive,line:isLine}'>TEST</h2>
+			<h2 class="title" :class='getclasses()'>TEST</h2>
+			<button type="button" @click="btnclick">BUTTON</button>
+			<hr>
+			<h1>v-bind动态绑定class(数组语法)</h1>
+			<h2 class="title" :class='[active,line]'>TEST</h2>
+			<h2 class="title" :class='getclasses1()'>TEST</h2>
+			<hr>
+			<h1>v-bind动态绑定style(对象语法)</h1>
+			<h2 :style="{fontSize:finalsize+'px',color:finalcolor}">HELLLLO</h2>
+			<h2 :style="getstyles()">HELLLLO</h2>
+			<h1>v-bind动态绑定style(数组语法)</h1>
+			<h2 :style="[basestyle,basestyle1]">HELLLLO</h2>
+		</div>
+		<script type="text/javascript">
+			const app=new Vue({
+				el:'#app',
+				data:{
+					imgurl:'https://i0.hdslb.com/bfs/archive/f8aa2ca375ef45600d832bed538f6aae23fdaed3.jpg@880w_388h_1c_95q',
+					ahref:'https://www.baidu.com',
+					isActive:true,
+					isLine:false,
+					active:'aaa',
+					line:'bbb',
+					finalsize:50,
+					finalcolor:'red',
+					basestyle:{background:'red'},
+					basestyle1:{color:'white'}
+				},
+				methods:{
+					btnclick:function(){
+						this.isActive=!this.isActive;
+					},
+					getclasses:function(){
+						return {active:this.isActive,line:this.isLine}
+					},
+					getclasses1:function(){
+						return [this.active,this.line]
+					},
+					getstyles(){
+						return {fontSize:this.finalsize+'px',color:this.finalcolor}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

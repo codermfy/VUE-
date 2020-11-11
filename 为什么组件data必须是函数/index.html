@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<cpnb></cpnb>
+		</div>
+		<template id='cpnb'>
+			<div>
+				<h1>{{title}}</h1>
+				<h2>{{content}}</h2>
+			</div>
+		</template>
+		<script>
+			//组件不能直接访问Vue实例中的data，组件应该有自己保存数据的地方
+			//如果创建多个组件实例，如果data不是函数，则多个实例公共用一个data，相互影响
+			//如果data是函数，每个函数都有自己的作用域。
+			Vue.component('cpnb',{
+				template:'#cpnb',
+				data(){
+					return {
+						title:'标题',
+						content:'内容'
+					}
+				}
+			})
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message:'hello'
+				},
+				methods:{
+				}
+			})
+		</script>
+	</body>
+</html>

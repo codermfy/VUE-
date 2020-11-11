@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<cpn :num1="num1" :num3="num3" @num1change="num1change" @num2change="num2change"></cpn>
+		</div>
+		<template id="cpn">
+			<div>
+				<h1>props:{{num1}}</h1>
+				<h1>data:{{num2}}</h1>
+				<input type="text" v-model="num2" @input="childinput">
+				<h1>props:{{num3}}</h1>
+				<h1>data:{{num4}}</h1>
+				<input type="text" v-model="num4">
+			</div>
+		</template>
+		<script>
+			const cpn = {
+						template:'#cpn',
+						props:{
+							num1:String,
+							num3:String
+						},
+						data(){
+							return{
+								num2:this.num1,
+								num4:this.num3
+							}
+						},
+						methods:{
+							childinput(event){
+								// this.num2=event.target.value;
+								this.$emit("num1change",this.num2);
+							}
+						},
+						watch:{
+							num4(newvalue){
+								// this.num4=newvalue;
+								this.$emit('num2change',this.num4);
+							}
+						}
+					}
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message:'hello',
+					num1:'1',
+					num3:'2',
+				},
+				methods:{
+					num1change(value){
+						this.num1=value
+						// console.log("ssssssssss");
+					},
+					num2change(value){
+						this.num3=value
+					}
+				},
+				components:{
+					cpn
+				}
+			})
+		</script>
+	</body>
+</html>

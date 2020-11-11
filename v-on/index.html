@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h2>{{counter}}</h2>
+			<!-- 在事件定义时，写函数时省略了小括号，但是方法本身是需要一个参数的 ，这个时候，Vue会默认将浏览器产生的event事件对象作为参数传入到方法-->
+			<!-- undefined -->
+			<button type="button" @click="btn2Click()">btn1</button>
+			<!-- MouseEvent -->
+			<button type="button" @click="btn2Click">btn2</button>
+			<hr>
+			<!-- 在方法定义时，既需要event，又需要其他参数 -->
+			<!-- MouseEvent  undefined-->
+			<button type="button" @click="btn3Click">btn3</button>
+			<!-- 在调用方法时，手动调用浏览器参数event对象：$event -->
+			<button type="button" @click="btn3Click('abc',$event)">btn4</button>
+			<hr><hr><hr>
+			<h1>v-on 修饰符</h1>
+			<div @click="divclick">
+				<button type="button" @click.stop="btnclick">防止事件冒泡.stop</button>
+			</div>
+			<hr>
+			<form action="baidu" method="">
+				<input type="submit" name="" id="" value="预防默认事件.prevent" @click.prevent="subclick"/>
+			</form>
+			<hr>
+			<input type="text" @keyup.enter="keyup" placeholder="点击enter触发事件">
+			<hr>
+			<button type="button" @click.once="btn">事件触发一次.once</button>
+		</div>
+		<script type="text/javascript">
+			const app = new Vue({
+				el: '#app',
+				data: {
+					counter:0
+				},
+				methods: {
+					btn2Click(abc){
+						console.log(abc);
+					},
+					btn3Click(abc,event){
+						console.log(abc,event);
+					},
+					btnclick(){
+						console.log('btnclick');
+					},
+					divclick(){
+						console.log('divclick');
+					},
+					subclick(){
+						console.log('subclick');
+					},
+					keyup(){
+						console.log('keyup');
+					},
+					btn(){
+						console.log('btn');
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

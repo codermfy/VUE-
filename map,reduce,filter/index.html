@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+		</div>
+		<script>
+			const app = new Vue({
+				el: '#app',
+				data: {
+				},
+				methods:{
+				}
+			})
+			//filter中的回调函数必须返回一个boolean值
+			//true:函数内部会自动将这次回调的n加入到新的数组中
+			//false:函数内部会自动过滤掉这次的n
+			const nums=[10,20,111,222,444,40,50]
+			// let newnums=nums.filter((n)=>{
+			// 	return n<100;
+			// })
+			// console.log(newnums);
+			
+			// let newnums2=newnums.map((n)=>{
+			// 	return n*2;
+			// })
+			// console.log(newnums2);
+			
+			// let newnums3=newnums2.reduce((preValue,n)=>{
+			// 	return preValue+n;
+			// },0)
+			
+			// let total=nums.filter((n)=>{
+			// 	return n<100
+			// }).map((n)=>{
+			// 	return n*2
+			// }).reduce((pre,n)=>{
+			// 	return pre+n
+			// },0)
+			let total=nums.filter(n=>n<100).map(n=>n*2).reduce((pre,n)=>pre+n);
+			console.log(total);
+		</script>
+	</body>
+</html>

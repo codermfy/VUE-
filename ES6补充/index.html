@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<button>按钮1</button>
+		<button>按钮2</button>
+		<button>按钮3</button>
+		<button>按钮4</button>
+		<button>按钮5</button>
+		<script type="text/javascript">
+			//ES5之前因为if和for都没有块级作用域的概念，所以在很多时候，我们必须借助于function的作用域来解决应用外面变量的问题
+			//ES6中加入了let，let它是有if和let的作用域
+			// 1.变量作用域：变量在什么范围内是可用。
+		// {
+		// 	var name='why';
+		// 	console.log(name);
+		// }
+		// console.log(name);
+		//2.没有块级作用域引起的问题:if的块级
+		// var func;
+		// if(true){
+		// 	var name='shy';
+		// 	func=function(){
+		// 		console.log(name);
+		// 	}
+		// 	func()
+		// }
+		// name="kobe";
+		// func()
+		//3.没有块级作用域引起的问题:for的块级
+		//为什么闭包可以解决问题，函数是个作用域
+		// var btns=document.getElementsByTagName('button');
+		// for(var i=0;i<btns.length;i++){
+		//	//错误的方式
+		// 	// btns[i].addEventListener('click',function(){
+		// 	// 	console.log(i);
+		//	//闭包的方式
+		// 	(function(i){
+		// 		btns[i].addEventListener('click',function(){
+		// 			console.log(i);
+		// 	})
+		// 	})(i)
+		// }
+		// let使用
+		const btns=document.getElementsByTagName('button');
+		for(let i=0;i<btns.length;i++){
+			btns[i].addEventListener('click',function(){
+				console.log(i);
+		})
+		}
+		//const的使用
+		
+		//报错：Identifier 'name' has already been declared
+		//const修饰的标识符被赋值之后，不能修改
+		// const name='why';
+		// name='abc';
+		//报错：Missing initializer in const declaration
+		//const定义标识符，必须进行赋值
+		// const name;
+		
+		//常量的含义是指向的对象不能修改，但是可以改变对象内部的属性
+		// const obj={
+		// 	name:'why',
+		// 	age:18,
+		// 	height:1.88
+		// }
+		// console.log(obj);
+		// obj.name='kobe';
+		// obj.age=40;
+		// obj.height=1.87;
+		// console.log(obj);
+		
+		//对象字面量的增强写法
+		
+		const name="wht";
+		const age=18;
+		const height=1.88;
+		//ES5的写法
+		// const obj={
+		// 	name:name,
+		// 	age:age,
+		// 	height:height
+		// }
+		
+		//ES6
+		// const obj={
+		// 	name,
+		// 	age,
+		// 	height
+		// }
+		
+		//函数的增强写法
+		//ES5
+		// const obj={
+		// 	run:function(){
+				
+		// 	}
+		// }
+		//ES6
+		// const obj = {
+		// 	run(){
+				
+		// 	}
+		// }
+		// console.log(obj);
+		// Array.prototype.decimalfy = function() {
+		//   for (i = 0; i < this.length; i++) {
+		//     this[i] = this[i].toFixed(2);
+		//   }
+		// };
+		
+		// const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+		
+		// for (const digit of digits) {
+		//   console.log(digit);
+		// }
+		const order = [20.17, 18.67, 1.50, "cheese", "eggs", "milk", "bread"];
+		const [total, subtotal, tax, ...items] = order;
+		console.log(total, subtotal, tax, items);
+		
+		
+
+ </script>
+		
+	</body>
+</html>

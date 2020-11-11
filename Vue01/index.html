@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h1>{{message}}</h1>
+			<h2>{{name}}</h2>
+		<hr>
+		<h1>数据列表</h1>
+		<ul>
+			<li v-for='item in movies'>{{item}}</li>
+		</ul>
+		<hr>
+		<h1>计数器</h1>
+		<h2>{{counter}}</h2>
+<!-- 		<button type="button" v-on:click="counter++">+</button>
+		<button type="button" v-on:click="counter--">-</button> -->
+		<button type="button" @click="add">+</button>
+		<button type="button" @click="sub">-</button>
+		</div>
+		
+		
+		<script type="text/javascript">
+			//编程范式：声明式编程
+			//语法糖:简写
+			const app = new Vue({
+				el:'#app',//用于挂载要管理的元素
+				data:{   //定义数据
+					message:'hello Vue',
+					name:'mfy',
+					movies:['海王','星际穿越','大话西游','盗墓空间'],
+					counter:0
+				},
+				methods:{
+					add:function(){
+						this.counter++;
+					},
+					sub:function(){
+						this.counter--;
+					}
+				}
+				
+			})
+		</script>
+	</body>
+</html>

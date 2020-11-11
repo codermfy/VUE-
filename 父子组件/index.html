@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<cpn2></cpn2>
+			<cpn-g></cpn-g>
+			<cpn-j></cpn-j>
+			<cpna></cpna>
+			<cpnb></cpnb>
+		</div>
+		<!-- script标签 ，类型必须是text/x-template -->
+		<script type="text/x-template" id="cpna">
+			<div>
+			<h1>sdasdasdasd</h1>
+			<h2>ddddddddddddd</h2>
+			</div>
+		</script>
+		<!-- template标签 -->
+		<template id='cpnb'>
+			<div>
+				<h1>xxxxxxxxxxxxx</h1>
+				<h2>yyyyyyyyyyyy</h2>
+			</div>
+		</template>
+		<script>
+			//子组件
+			const cpnC1=Vue.extend({
+				template:`
+					<div>
+						<h1>son</h1>
+					</div>
+				`
+			})
+			//父组件
+			const cpnC2=Vue.extend({
+				template:`
+					<div>
+						<h1>father</h1>
+						<cpn1></cpn1>
+					</div>
+				`,
+				components:{
+					cpn1:cpnC1
+				}
+			})
+			//1.全局组件注册的语法糖
+			Vue.component('cpn-g',{
+				template:`
+					<div>
+						<h1>全局组件语法糖</h1>
+					</div>
+				`
+			})
+			//组件模板的分离写法
+			Vue.component('cpna',{
+				template:'#cpna'
+			})
+			Vue.component('cpnb',{
+				template:'#cpnb'
+			})
+			
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message:'hello'
+				},
+				methods:{
+				},
+				components:{
+					cpn2:cpnC2,
+					'cpn-j':{ //2.局部组件注册的语法糖
+				template:`
+					<div>
+						<h1>局部组件语法糖</h1>
+					</div>
+				`
+			}
+				}
+			})
+			
+
+		</script>
+	</body>
+</html>
